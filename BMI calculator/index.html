@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BMI Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>BMI Calculator</h1>
+    <p>Body Mass Index · Health Category Checker</p>
+  </div>
+
+  <!-- Input Card -->
+  <div class="card">
+    <!-- Unit Toggle -->
+    <div class="unit-toggle">
+      <button class="unit-btn active" id="btnMetric" onclick="setUnit('metric')">cm / kg</button>
+      <button class="unit-btn" id="btnImperial" onclick="setUnit('imperial')">ft·in / lbs</button>
+    </div>
+
+    <!-- Name -->
+    <div class="field">
+      <label>Your Name</label>
+      <input type="text" id="nameInput" placeholder="Enter your name (optional)" />
+    </div>
+
+    <!-- Height & Weight -->
+    <div class="row" id="metricFields">
+      <div class="field">
+        <label>Height (cm)</label>
+        <input type="number" id="heightCm" placeholder="e.g. 170" min="1"/>
+        <div class="error-msg" id="errHeight">Enter a valid height</div>
+      </div>
+      <div class="field">
+        <label>Weight (kg)</label>
+        <input type="number" id="weightKg" placeholder="e.g. 65" min="1"/>
+        <div class="error-msg" id="errWeight">Enter a valid weight</div>
+      </div>
+    </div>
+
+    <div class="row" id="imperialFields" style="display:none">
+      <div class="field">
+        <label>Height (ft)</label>
+        <input type="number" id="heightFt" placeholder="5" min="1"/>
+      </div>
+      <div class="field">
+        <label>Height (in)</label>
+        <input type="number" id="heightIn" placeholder="7" min="0" max="11"/>
+      </div>
+    </div>
+    <div class="field" id="lbsField" style="display:none">
+      <label>Weight (lbs)</label>
+      <input type="number" id="weightLbs" placeholder="e.g. 143" min="1"/>
+      <div class="error-msg" id="errWeightLbs">Enter a valid weight</div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="calculate()">Calculate BMI</button>
+      <button class="btn btn-reset" onclick="resetAll()" title="Reset">✕ Reset</button>
+    </div>
+  </div>
+
+  <!-- Result Card -->
+  <div class="result-card" id="resultCard">
+    <div class="result-name" id="resultName"></div>
+    <div class="bmi-value" id="bmiValue">--</div>
+    <div class="bmi-category" id="bmiCategory">--</div>
+    <div class="bmi-bar-wrap">
+      <div class="bmi-bar-fill" id="bmiBar" style="width:0%"></div>
+    </div>
+    <div class="bmi-bar-labels">
+      <span>Underweight<br>&lt;18.5</span>
+      <span>Normal<br>18.5–24.9</span>
+      <span>Overweight<br>25–29.9</span>
+      <span>Obese<br>≥30</span>
+    </div>
+  </div>
+
+  <!-- History Card -->
+  <div class="history-card" id="historyCard">
+    <div class="history-header">
+      <h3>📋 Calculation History</h3>
+      <button class="clear-history" onclick="clearHistory()">Clear all</button>
+    </div>
+    <ul class="history-list" id="historyList"></ul>
+  </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
